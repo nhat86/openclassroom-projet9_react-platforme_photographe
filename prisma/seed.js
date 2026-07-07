@@ -1,8 +1,8 @@
-import { PrismaClient } from '../generated/prisma/client.ts';
+import { PrismaClient } from '@prisma/client';
 import photographers from '../data/photographer.json' with { type: 'json' };
 import medias from '../data/media.json' with { type: 'json' };
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
     await prisma.photographer.createMany({
