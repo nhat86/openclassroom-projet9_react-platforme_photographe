@@ -1,21 +1,29 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   return (
-    <header className="flex items-center justify-between px-5 py-6 lg:px-[100px] lg:py-11">
-      <Link href="/" aria-label="FishEye, retour à l&apos;accueil">
+    <header className="w-full max-w-[1300px] mx-auto flex items-center justify-between px-5 py-6 lg:py-11">
+      <Link href="/" aria-label="FishEye, home page">
         <Image
           src="/logo.png"
-          alt="FishEye"
+          alt="Fisheye Home page"
           width={128}
           height={30}
           priority
         />
       </Link>
-      <h1 className="font-sans text-primary text-lg lg:text-[36px]">
-        Nos photographes
-      </h1>
+      {isHomePage && (
+        <h1 className="text-primary text-lg lg:text-[36px]">
+          Nos photographes
+        </h1>
+      )}
     </header>
   );
 }

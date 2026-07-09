@@ -2,11 +2,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #525252;
+  --foreground: rgba(0, 0, 0, 1);
   --color-primary: rgba(144, 28, 28, 1);
   --color-secondary: rgba(211, 87, 60, 1);
   --color-tertiary: rgba(117, 117, 117, 1);
   --color-quaternary: rgba(0, 0, 0, 1);
+  --color-quinary: rgba(219, 136, 118, 1);
 }
 
 @theme inline {
@@ -16,8 +17,8 @@
   --color-secondary: var(--color-secondary);
   --color-tertiary: var(--color-tertiary);
   --color-quaternary: var(--color-quaternary);
+  --color-quinary: var(--color-quinary);
   --font-sans: var(--font-dm-sans);
-  --font-serif: var(--font-dm-serif);
 }
 
 body {
