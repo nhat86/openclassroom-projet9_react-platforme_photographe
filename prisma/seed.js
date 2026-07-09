@@ -10,7 +10,7 @@ async function main() {
     });
 
     await prisma.media.createMany({
-        data: medias // content from ./data/media.json
+        data: medias 
     });
 }
 
