@@ -6,7 +6,7 @@ import { useState } from "react";
 type Props = {
   mediaId?: number | string;
   likes: number;
-  onLikeChange?: () => void;
+  onLikeChange?: (delta: number) => void;
 };
 
 export default function LikeButton({
@@ -15,11 +15,16 @@ export default function LikeButton({
   onLikeChange,
 }: Props) {
   const [count, setCount] = useState(likes);
+  const [isLiked, setIsLiked] = useState(false);
 
   const handleClick = async () => {
-    const newCount = count + 1;
+    const newIsLiked = !isLiked;
+    const delta = newIsLiked ? 1 : -1;
+    const newCount = count + delta;
+    
     setCount(newCount);
-    onLikeChange?.();
+    setIsLiked(newIsLiked);
+    onLikeChange?.(delta);
 
     if (mediaId) {
       try {
@@ -43,13 +48,13 @@ export default function LikeButton({
     <button
       onClick={handleClick}
       className="flex items-center gap-2 font-semibold text-primary"
-      aria-label = "likes"
+      aria-label = {isLiked ? "Retirer le like" : "Ajouter un like"}
     >
       {count}
 
       <Heart
         size={18}
-        fill="currentColor"
+        fill={isLiked ? "currentColor" : "none"}
         aria-hidden="true"
       />
     </button>

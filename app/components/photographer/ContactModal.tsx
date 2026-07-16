@@ -29,7 +29,9 @@ export default function ContactModal({ isOpen, onClose, photographerName }: Prop
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" role="dialog"
+  aria-modal="true"
+  aria-labelledby={`contact-me-${photographerName}`}>
       <div className="relative w-full max-w-md rounded-lg bg-quinary p-6 shadow-lg">
         <button
           onClick={onClose}
@@ -39,19 +41,19 @@ export default function ContactModal({ isOpen, onClose, photographerName }: Prop
           <X size={24} />
         </button>
 
-        <h2 className="mb-6 text-[44px] font-bold text-black" id="2">
+        <h1 className="mb-6 text-[44px] font-bold text-black" id={`contact-me-${photographerName}`}>
           Contactez-moi <br/> 
           {photographerName}
-        </h2>
+        </h1>
 
-        <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby="2">
+        <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby={`contact-me-${photographerName}`}>
           <div>
             <label htmlFor="firstName" className="block mb-2 font-medium text-black">
               Prénom
             </label>
             <input
+              id="firstName"
               type="text"
-              id="3"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
@@ -65,8 +67,8 @@ export default function ContactModal({ isOpen, onClose, photographerName }: Prop
               Nom
             </label>
             <input
+              id="lastName"
               type="text"
-              id="5"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
@@ -80,8 +82,8 @@ export default function ContactModal({ isOpen, onClose, photographerName }: Prop
               Email
             </label>
             <input
+              id="email"
               type="email"
-              id="7"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -95,7 +97,7 @@ export default function ContactModal({ isOpen, onClose, photographerName }: Prop
               Votre message
             </label>
             <textarea
-              id="9"
+              id="message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required

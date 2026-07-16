@@ -42,15 +42,16 @@ export default function Lightbox({
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 px-20" aria-label="Image closeup view">
-      <button
+      
+
+      <div className="flex items-center gap-8 w-full max-w-[90vw]">
+        <button
         onClick={onClose}
         className="absolute right-8 top-8 text-white hover:text-gray-300"
         aria-label="Close dialog"
       >
         <X size={32} className="text-primary" />
       </button>
-
-      <div className="flex items-center gap-8 w-full max-w-[90vw]">
         <button
           onClick={onPrevious}
           className="text-white hover:text-gray-300 disabled:opacity-30 flex-shrink-0"

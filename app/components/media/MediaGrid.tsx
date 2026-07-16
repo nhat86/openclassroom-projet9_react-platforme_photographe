@@ -40,8 +40,8 @@ export default function MediaGrid({
     }
   }, [media, sortBy]);
 
-  const handleLikeChange = () => {
-    setTotalLikes((prev) => prev + 1);
+  const handleLikeChange = (delta: number) => {
+    setTotalLikes((prev) => prev + delta);
   };
 
   const handleMediaClick = (index: number) => {
@@ -59,7 +59,7 @@ export default function MediaGrid({
 
   return (
     <>
-      <section className="mt-16 flex flex-wrap gap-x-24 gap-y-16">
+      <section className="mt-16 flex flex-wrap justify-between gap-x-24 gap-y-16">
         {sortedMedia.map((item, index) => (
           <div key={item.id ?? item.title} className="w-full max-w-[320px]">
             <MediaCard
