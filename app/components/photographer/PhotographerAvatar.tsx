@@ -37,7 +37,7 @@ export default function PhotographerAvatar({
   return (
     <Image
       src={`/photographers/${portrait}`}
-      alt={``}
+      alt={`${name}`}
       width={200}
       height={200}
       className="mb-[10px] h-[200px] w-[200px] rounded-full object-cover"

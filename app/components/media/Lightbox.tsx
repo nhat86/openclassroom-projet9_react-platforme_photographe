@@ -44,7 +44,7 @@ export default function Lightbox({
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 px-20" aria-label="Image closeup view">
       
 
-      <div className="flex items-center gap-8 w-full max-w-[90vw]">
+      <div className="flex items-center gap-8 w-full max-w-[90vw] bg-white">
         <button
         onClick={onClose}
         className="absolute right-8 top-8 text-white hover:text-gray-300"

@@ -13,7 +13,7 @@ export default function PhotographerInfo({
         {photographer.city}, {photographer.country}
       </p>
 
-      <p className="mt-4 text-lg text-gray-500">{photographer.tagline}</p>
+      <p className="mt-4 text-lg text-[rgba(82,82,82,1)]">{photographer.tagline}</p>
     </div>
   );
 }

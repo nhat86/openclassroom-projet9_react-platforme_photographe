@@ -16,7 +16,7 @@ export default function PhotographerHeader({
 
   return (
     <>
-      <section className="flex items-center justify-between rounded-md bg-gray-100 px-12 py-14">
+      <section className="flex items-center justify-between rounded-md bg-[#FAFAFA] px-12 py-14">
         <PhotographerInfo
           photographer={photographer}
         />

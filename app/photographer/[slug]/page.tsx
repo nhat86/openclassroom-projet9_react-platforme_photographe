@@ -11,7 +11,6 @@ type PageProps = {
     slug: string;
   }>;
 };
-
 export default async function PhotographerPage({ params }: PageProps) {
   const { slug } = await params;
   const id = Number(slug);
