@@ -12,7 +12,7 @@ type MediaItem = {
 
 type Props = {
   media: MediaItem;
-  onLikeChange?: () => void;
+  onLikeChange?: (delta: number) => void;
   onClick?: () => void;
 };
 

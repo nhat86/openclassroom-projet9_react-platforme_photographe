@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.0.0",
@@ -26,11 +27,5 @@
     "tailwindcss": "^4",
     "tsx": "^4.20.4",
     "typescript": "^5"
-  },
-  "prisma": {
-    "type": "module",
-    "prisma": {
-      "seed": "tsx prisma/seed.js"
-    }
   }
 }

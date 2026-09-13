@@ -17,8 +17,8 @@ export default function NotFound() {
           Photographe introuvable
         </h1>
         <p className="max-w-md text-gray-500">
-          Le photographe que vous recherchez n'existe pas ou a été supprimé.
-          Vérifiez le lien ou retournez à l'accueil pour découvrir nos autres
+          Le photographe que vous recherchez n&apos;existe pas ou a été supprimé.
+          Vérifiez le lien ou retournez à l&apos;accueil pour découvrir nos autres
           talents.
         </p>
       </div>
@@ -27,7 +27,7 @@ export default function NotFound() {
         href="/"
         className="rounded-md bg-primary px-5 py-3 font-bold text-white transition hover:bg-[#4a2323]"
       >
-        Retour à l'accueil
+        Retour à l&apos;accueil
       </Link>
     </div>
   );
