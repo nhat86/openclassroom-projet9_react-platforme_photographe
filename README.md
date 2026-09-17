@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FishEye — Plateforme de photographes
 
-## Getting Started
+Application web présentant des photographes freelances et leurs galeries de médias (photos et vidéos). Projet réalisé dans le cadre de la formation OpenClassrooms, reconstruit en stack moderne full-stack.
 
-First, run the development server:
+## Fonctionnalités
+
+- **Page d'accueil** : liste des photographes (portrait, ville, slogan, tarif)
+- **Page photographe** : galerie d'images et de vidéos, tri par **popularité**, **date** ou **titre**
+- **Lightbox** : navigation clavier entre les médias
+- **Likes** : compteur par média + total des likes du photographe, persistés en base via une API REST (`POST /api/media/like`)
+- **Modale de contact** : formulaire accessible (les données sont loguées en console, conformément au brief)
+- **Page 404** personnalisée
+- **Accessibilité** : rôles ARIA, navigation clavier, labels sur les éléments interactifs
+
+## Stack technique
+
+- **Next.js 16** (App Router, Turbopack) + **React 19** + **TypeScript**
+- **Tailwind CSS 4**
+- **Prisma 6** + **PostgreSQL** (Prisma Postgres)
+- **Lucide React** (icônes)
+- Déployé sur **Vercel**
+
+## Démarrage en local
 
 ```bash
+# 1. Installer les dépendances
+npm install
+
+# 2. Configurer l'environnement
+cp .env.example .env
+# puis renseigner DATABASE_URL (connection string PostgreSQL)
+
+# 3. Préparer la base de données
+npx prisma migrate deploy   # crée les tables
+npx prisma db seed          # charge les données depuis data/*.json
+
+# 4. Lancer le serveur de dev
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Commande        | Description                              |
+| --------------- | ---------------------------------------- |
+| `npm run dev`   | Serveur de développement                 |
+| `npm run build` | Build de production                      |
+| `npm run start` | Serveur de production                    |
+| `npm run lint`  | ESLint                                   |
+| `npx prisma db seed` | Re-seed la base depuis `data/`      |
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+├── api/media/like/route.ts   # API REST : mise à jour des likes
+├── components/               # Header, cartes, lightbox, modale contact...
+├── lib/prisma-db.js          # Requêtes Prisma
+├── page.tsx                  # Accueil (statique, prérendu)
+└── photographer/[slug]/      # Page photographe (dynamique)
+prisma/
+├── schema.prisma             # Modèles Photographer / Media
+├── migrations/               # Migrations SQL
+└── seed.js                   # Seed depuis data/photographer.json + data/media.json
+public/media/                 # Assets images/vidéos
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Déploiement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le projet est déployé sur **Vercel**. Pour redéployer ailleurs :
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. `DATABASE_URL` doit pointer vers une base PostgreSQL accessible (Neon, Supabase, Prisma Postgres…)
+2. Le `postinstall` exécute `prisma generate` automatiquement au build
+3. La base doit être migrée (`prisma migrate deploy`) et seedée avant le premier build, car la page d'accueil est prérendue
